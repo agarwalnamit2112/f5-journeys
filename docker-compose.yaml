@@ -1,6 +1,6 @@
 services:
   acc:
-    image: f5devcentral/f5-automation-config-converter:1.126.0
+    image: agarwalnamit1984/f5-automation-config-converter:1.126.0
     environment:
       - ACC_API_PORT=${ACC_API_PORT}
     restart: unless-stopped
@@ -8,7 +8,7 @@ services:
     tmpfs: /tmp
 
   journeys:
-    image: f5devcentral/f5-bigip-journeys-app:v4.2.2
+    image: agarwalnamit1984/f5-bigip-journeys:v4.2.2
     environment:
       - ACC_API_PORT=${ACC_API_PORT}
       - ACC_API_HOST=acc
@@ -22,7 +22,6 @@ services:
       - DB_PASS=${DB_PASS}
     command:
       runserver
-
     ports:
       - "127.0.0.1:${JOURNEYS_PORT}:443"
     depends_on:
@@ -35,7 +34,7 @@ services:
     image: redis:8.2.2-alpine3.22
 
   celery-worker:
-    image: f5devcentral/f5-bigip-journeys-app:v4.2.2
+    image: agarwalnamit1984/f5-bigip-journeys:v4.2.2
     command: celery -A journeys.backend worker -l debug
     environment:
       - BROKER_URL=${BROKER_URL}
