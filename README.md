@@ -621,6 +621,7 @@ cd f5-journeys
 1. Fetch services included in the docker-compose configuration file
    ```
    docker compose pull
+   (or run) sudo docker-compose pull
    ```
 
 1. Print sha digest of downloaded images
